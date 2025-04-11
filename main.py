@@ -1,5 +1,6 @@
 import pandas as pd
-from src import (conn, create_combined_df, formulation_ID_list, calc_value_distribution)
+from src import (conn, create_combined_df, calc_value_distribution, getMolDescriptors)
+from rdkit import Chem
 
 ### Run from root directory: 'py -m experiments.generate_backend_df' ###
 
@@ -22,9 +23,34 @@ API_df = API_df.rename(columns = {'ID': 'IVR_ID'})
 # Retrieve API names
 API_name_query = f"""SELECT 
                 ID,
-                API_name
+                API_name,
+                SMILES
             FROM
                 API_name;"""
+
+#calculate molecular descriptors here 
+smiles_df = pd.read_sql(API_name_query, conn)
+smiles_df['SMILES'] = smiles_df['SMILES'].astype(str)
+
+mol_descriptors = []
+for smile in smiles_df['SMILES']:
+    mol = Chem.MolFromSmiles(smile)
+    mol_descriptors.append(getMolDescriptors(mol))
+    
+mol_descriptors_df = pd.DataFrame(mol_descriptors)
+
+#Add API_ID to mol_descriptors_df 
+mol_descriptors_df = pd.concat([mol_descriptors_df, smiles_df], axis = 1, join = "inner")
+#remove smiles column from mol_descriptors_df
+mol_descriptors_df = mol_descriptors_df.drop(columns = ['SMILES'])
+#move ID column to front of dataframe
+ID = mol_descriptors_df['ID']
+mol_descriptors_df = mol_descriptors_df.rename(columns = {'ID': 'API_ID'})
+
+#selecting specific mol descriptors 
+mol_desc_df = mol_descriptors_df[['API_ID', 'MolWt', 'TPSA', 'NumHAcceptors', 'NumHDonors',
+                                  'NumRotatableBonds', 'MolLogP']]
+
 
 #Merge API information into a single dataframe
 API_df_name = pd.read_sql(API_name_query, conn)
@@ -44,7 +70,6 @@ df_all = create_combined_df(features_IVR_all, features_CQAs_all, conn).rename(co
 
 #Merge API information and weighted properties into a single dataframe
 df_all_combined = pd.merge(df_all, API_df_name, on = 'IVR_ID')
-df_all_combined.to_csv('data/unprocessed/backend_data.csv')
 
 #Export the time units of each IVR profile (IVR_ID) to a csv file 
 time_query = """
@@ -55,13 +80,15 @@ time_query = """
      """
 
 time_units = pd.read_sql(time_query, conn)
-time_units.to_csv('data/time_units.csv', index=False)
-
 
 # ---- Step 3: Calculate % frequency of API and release_method ----
-
 API_percent = calc_value_distribution('API_name', df_all_combined)
 method_percent = calc_value_distribution('release_method', df_all_combined)
 
-API_percent.to_csv('data/processed/API_percent.csv', index=True)
-method_percent.to_csv('data/processed/method_percent.csv', index=True)
+if __name__ == "__main__":
+    mol_desc_df.to_csv('data/processed/mol_descriptors.csv', index=False)
+    time_units.to_csv('data/time_units.csv', index=False)
+    df_all_combined.to_csv('data/unprocessed/backend_data.csv')
+    API_percent.to_csv('data/processed/API_percent.csv', index=True)
+    method_percent.to_csv('data/processed/method_percent.csv', index=True)
+    

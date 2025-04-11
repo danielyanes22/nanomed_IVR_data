@@ -1,5 +1,6 @@
 import sqlite3
 import pandas as pd
+from rdkit.Chem import Descriptors
 
 def create_combined_df(features_IVR: str, features_CQAs: list, conn: sqlite3.Connection) -> pd.DataFrame:
     """
@@ -51,3 +52,25 @@ def calc_value_distribution(column_name, df):
     count = df[column_name].value_counts()
     percent = round((count / len(df)) * 100, 2)
     return pd.DataFrame({'Count': count, 'Percent': percent})
+
+
+#function for obtaining full set of molecular descriptors for each SMILES string
+def getMolDescriptors (mol, missingVal = None):
+    """Calculate full list of molecular descriptors for a given molecule,
+    using RDKit.  Missing val used if descriptor cannot be calculated.  
+    Args:
+        mol (string): smiles string
+        missingVal (optional): Defaults to None.
+    """
+    res = {}
+    for nm, fn in Descriptors._descList:
+        try: 
+            val = fn(mol)
+        except:
+            #print error 
+            import traceback 
+            traceback.print_exc()
+            #set descriptor value to whatever missingval is 
+            val = missingVal
+        res[nm] = val 
+    return res
