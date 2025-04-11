@@ -33,13 +33,13 @@ missing_data = backend_df_reduced.isnull().sum()
 total = backend_df_reduced.isnull().sum().sort_values(ascending=False)
 percent = (backend_df_reduced.isnull().sum()/backend_df_reduced.isnull().count()).sort_values(ascending=False) * 100
 missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
-print(missing_data)
+
+missing_data.to_csv('data/processed/missing_data.csv', index=True)
 
 # Generate the missing value matrix
 msno.matrix(backend_df_reduced, fontsize=12, figsize=(16, 12), color=(0.2, 0.4, 0.6))
 
 # Save the figure
-
-#plt.savefig('figures/missing_matrix.png', dpi=600, bbox_inches='tight')
-#plt.close()
+plt.savefig('figures/missing_matrix.png', dpi=600, bbox_inches='tight')
+plt.close()
 
