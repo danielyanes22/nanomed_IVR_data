@@ -48,7 +48,7 @@ ID = mol_descriptors_df['ID']
 mol_descriptors_df = mol_descriptors_df.rename(columns = {'ID': 'API_ID'})
 
 #selecting specific mol descriptors 
-mol_desc_df = mol_descriptors_df[['API_ID', 'MolWt', 'TPSA', 'NumHAcceptors', 'NumHDonors',
+mol_desc_df = mol_descriptors_df[['API_ID', 'API_name', 'MolWt', 'TPSA', 'NumHAcceptors', 'NumHDonors',
                                   'NumRotatableBonds', 'MolLogP']]
 
 
@@ -57,6 +57,11 @@ API_df_name = pd.read_sql(API_name_query, conn)
 API_df_name = API_df_name.rename(columns = {'ID': 'API_ID'})
 API_df_name = pd.merge(API_df, API_df_name, on = 'API_ID')
 API_df_name = API_df_name.drop(columns = ['formulation_ID'])
+
+#add mol_desc_df to API_df_name
+API_df_name = pd.merge(API_df_name, mol_desc_df, on='API_ID')
+API_df_name = API_df_name.drop(columns='API_name_y')  # Keep only one
+API_df_name = API_df_name.rename(columns={'API_name_x': 'API_name'})
 
 print('Prepared API dataframe!')
 
@@ -70,6 +75,7 @@ df_all = create_combined_df(features_IVR_all, features_CQAs_all, conn).rename(co
 
 #Merge API information and weighted properties into a single dataframe
 df_all_combined = pd.merge(df_all, API_df_name, on = 'IVR_ID')
+
 
 #Export the time units of each IVR profile (IVR_ID) to a csv file 
 time_query = """
