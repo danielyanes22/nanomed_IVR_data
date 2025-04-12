@@ -76,7 +76,7 @@ df_all = create_combined_df(features_IVR_all, features_CQAs_all, conn).rename(co
 #Merge API information and weighted properties into a single dataframe
 df_all_combined = pd.merge(df_all, API_df_name, on = 'IVR_ID')
 
-
+# ---- Step 3: generate df of time units of each IVR profile ----
 #Export the time units of each IVR profile (IVR_ID) to a csv file 
 time_query = """
             SELECT 
@@ -87,14 +87,28 @@ time_query = """
 
 time_units = pd.read_sql(time_query, conn)
 
-# ---- Step 3: Calculate % frequency of API and release_method ----
+# ---- Step 4: Calculate % frequency of API and release_method ----
 API_percent = calc_value_distribution('API_name', df_all_combined)
 method_percent = calc_value_distribution('release_method', df_all_combined)
 
+
+# ---- Step 5: generate dataframe of media components used in each IVR test ----
+media_query = f"""
+            SELECT
+                IVR_ID,
+                component_name
+            FROM
+                media_components;""" 
+
+media_components = pd.read_sql(media_query, conn) 
+
+
+# ---- Step 6: export all dataframes to csv files ----
 if __name__ == "__main__":
     mol_desc_df.to_csv('data/processed/mol_descriptors.csv', index=False)
     time_units.to_csv('data/time_units.csv', index=False)
     df_all_combined.to_csv('data/unprocessed/backend_data.csv')
     API_percent.to_csv('data/processed/API_percent.csv', index=True)
     method_percent.to_csv('data/processed/method_percent.csv', index=True)
+    media_components.to_csv('data/unprocessed/media_components.csv', index=False)
     
