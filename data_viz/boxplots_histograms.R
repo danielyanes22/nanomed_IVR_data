@@ -121,14 +121,3 @@ summary_stats <- formulation_df |>
   ), .id = "Descriptor")
 
 print(summary_stats)
-
-
-
-
-
-
-
-
-
-
-
