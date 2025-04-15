@@ -5,11 +5,16 @@ library(scales)
 library(ggrepel)
 library(forcats)
 library(patchwork)
+library(stringr)
 
 # Load and prep data
 APIs <- read_csv("data/processed/API_percent.csv") %>%
   mutate(API = as.character(API_name)) %>%
   select(API, Percent)
+
+#capitalise first letter of each API 
+APIs$API <- str_to_title(APIs$API)
+
 
 # Reorder API factor levels by descending percent
 APIs <- APIs %>%
@@ -42,7 +47,8 @@ plot_APIs <- ggplot(APIs, aes(x = API, y = Percent, fill = API)) +
     axis.text.x = element_text(angle = 60, hjust = 1, vjust = 0.9, face = "bold"),  
     axis.text.y = element_text(face = "bold"),  
     axis.title.x = element_text(face = "bold"),  
-    axis.title.y = element_text(face = "bold")   
+    axis.title.y = element_text(face = "bold"),
+    panel.grid = element_blank()
   ) + 
   ggtitle("a")
 
@@ -52,6 +58,8 @@ release_methods <- read_csv("data/processed/method_percent.csv") %>%
   mutate(release_method = as.character(release_method)) %>%
   select(release_method, Percent)
 
+#capitalise first letter of each release method 
+release_methods$release_method <- str_to_title(release_methods$release_method)
 
 # Reorder API factor levels by descending percent
 release_methods <- release_methods %>%
@@ -82,7 +90,8 @@ plot_methods <- ggplot(release_methods, aes(x = release_method, y = Percent, fil
     legend.position = "none",
     axis.text.x = element_text(angle = 60, hjust = 1, vjust = 0.9, face = "bold"),  
     axis.text.y = element_text(face = "bold"),  
-    axis.title.x = element_text(face = "bold"),  
+    axis.title.x = element_text(face = "bold"),
+    panel.grid = element_blank()
   ) + 
   ggtitle("b")
 
