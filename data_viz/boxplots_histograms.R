@@ -28,6 +28,7 @@ plot_box_hist_percent <- function(data, var, label, color, show_y = TRUE, log_x 
       axis.text.x = element_blank(),
       axis.text.y = element_blank(),
       axis.ticks = element_blank(),
+      panel.grid = element_blank(),
       plot.margin = margin(2, 5, 2, 5)
     )
   
@@ -38,11 +39,11 @@ plot_box_hist_percent <- function(data, var, label, color, show_y = TRUE, log_x 
     labs(x = label, y = if (show_y) "% of database" else NULL) +
     theme_minimal() +
     theme(
-      axis.title.x = element_text(face = "bold"),
-      axis.title.y = if (show_y) element_text(face = "bold") else element_blank(),
-      axis.text.x = element_text(face = "bold"),
-      axis.text.y = if (show_y) element_text(face = "bold") else element_blank(),
-      axis.ticks.y = element_blank(),
+      axis.title.x = element_text(face = "bold", size = 14),
+      axis.title.y = if (show_y) element_text(face = "bold", size = 14) else element_blank(),
+      axis.text.x = element_text(face = "bold", size = 12),
+      axis.text.y = element_text(face = "bold", size = 12),
+      panel.grid = element_blank(),
       plot.margin = margin(0, 5, 5, 5)
     )
   
