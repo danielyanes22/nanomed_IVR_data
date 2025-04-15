@@ -47,7 +47,7 @@ plot_APIs <- ggplot(APIs, aes(x = API, y = Percent, fill = API)) +
     axis.text.x = element_text(angle = 60, hjust = 1, vjust = 0.9, face = "bold"),  
     axis.text.y = element_text(face = "bold"),  
     axis.title.x = element_text(face = "bold"),  
-    axis.title.y = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold", size = 14),
     panel.grid = element_blank()
   ) + 
   ggtitle("a")
