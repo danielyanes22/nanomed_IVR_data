@@ -21,7 +21,7 @@ plot_quality_bar <- function(data_col, title, fill_color) {
     geom_text(aes(label = round(Percent, 1)), vjust = -0.3, fontface = "bold", size = 3) +
     scale_fill_manual(values = pastel_palette) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
-    labs(x = NULL, y = "Percentage (%)", title = title) +
+    labs(x = NULL, y = "%", title = title) +
     theme_minimal() +
     theme(
       legend.position = "none",
@@ -34,14 +34,42 @@ plot_quality_bar <- function(data_col, title, fill_color) {
 
 # Generate individual barplots using column names or positions
 # Update column names as needed below if different
-p1 <- plot_quality_bar(quality_reporting[[4]], "Reporting Quality", pastel_palette[1])
-p2 <- plot_quality_bar(quality_reporting[[5]], "Performance Bias (1)", pastel_palette[2])
-p3 <- plot_quality_bar(quality_reporting[[6]], "Performance Bias (2)", pastel_palette[3])
-p4 <- plot_quality_bar(quality_reporting[[7]], "Detection Bias", pastel_palette[4])
+# Individual plots with custom x-axis labels and formatting
+p1 <- plot_quality_bar(quality_reporting[[4]], "Reporting Quality", pastel_palette[1]) +
+  labs(x = "Plot resolution") +
+  theme(panel.grid = element_blank())
 
-# Combine in 2x2 layout
-(p1 | p2) / (p3 | p4) +
-  plot_annotation(
-    title = "Quality Appraisal Summary",
-    theme = theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5))
+p2 <- plot_quality_bar(quality_reporting[[5]], "Performance Bias", pastel_palette[2]) +
+  labs(x = "Are the measurement timepoint number sufficient? >5") +
+  theme(
+    panel.grid = element_blank(),
+    axis.title.y = element_blank()
   )
+
+p3 <- plot_quality_bar(quality_reporting[[6]], "Performance Bias", pastel_palette[3]) +
+  labs(x = "Does the shape resemble a profile?") +
+  theme(panel.grid = element_blank())
+
+p4 <- plot_quality_bar(quality_reporting[[7]], "Detection Bias", pastel_palette[4]) +
+  labs(x = "Are sufficient numbers of repeats used and average presented?") +
+  theme(
+    panel.grid = element_blank(),
+    axis.title.y = element_blank()
+  )
+
+# Combine in 2x2 layout with subplot tags
+quality <- (p1 | p2) / (p3 | p4) +
+  plot_annotation(
+    tag_levels = "a",
+    theme = theme(
+      plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+      plot.tag = element_text(face = "bold", size = 14)
+    )
+  )
+
+
+ggsave("figures/quality_appraisal.png", 
+       plot = quality, 
+       width = 12, height = 8, 
+       dpi = 600)
+
