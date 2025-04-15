@@ -16,8 +16,8 @@ g = sns.jointplot(
     kind='kde')
 
 # Axis labels with units
-g.ax_joint.set_xlabel('Media Temperature (°C)', fontsize=14)
-g.ax_joint.set_ylabel('Media pH', fontsize=14)
+g.ax_joint.set_xlabel('Media Temperature (°C)', fontsize=12)
+g.ax_joint.set_ylabel('Media pH', fontsize=12)
 
 # Axis limits
 g.ax_joint.set_ylim(5, 9)
