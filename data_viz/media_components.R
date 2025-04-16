@@ -56,6 +56,7 @@ plot_media_components <- ggplot(component_freq, aes(x = Media_component, y = Per
     axis.text.y = element_text(face = "bold"),
     axis.title.x = element_text(face = "bold", size = 14),
     axis.title.y = element_text(face = "bold", size = 14),
+    axis.ticks.y = element_line(),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
   )

@@ -44,6 +44,8 @@ plot_box_hist_percent <- function(data, var, label, color, show_y = TRUE, log_x 
       axis.text.x = element_text(face = "bold", size = 12),
       axis.text.y = element_text(face = "bold", size = 12),
       panel.grid = element_blank(),
+      axis.ticks.y = element_line(),
+      axis.ticks.x = element_line(),
       plot.margin = margin(0, 5, 5, 5)
     )
   

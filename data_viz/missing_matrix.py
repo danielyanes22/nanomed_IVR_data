@@ -17,12 +17,14 @@ backend_df_reduced['drug_loading'] = backend_df_reduced['drug_loading'].round(2)
 print("Number of rows in the dataframe: ", backend_df_reduced.shape[0])
 
 #change column names of zeta_potential to zeta potential / mV
-backend_df_reduced = backend_df_reduced.rename(columns = {'zeta_potential': 'Zeta potential / mV'})
-backend_df_reduced = backend_df_reduced.rename(columns = {'Z_average_nm': 'Particle size / nm'})
-backend_df_reduced = backend_df_reduced.rename(columns = {'media_pH': 'Media pH'})
-backend_df_reduced = backend_df_reduced.rename(columns = {'media_temp_oC': 'Media temp / °C'})
-backend_df_reduced = backend_df_reduced.rename(columns = {'media_volume_mL': 'Media volume / mL'})
-backend_df_reduced = backend_df_reduced.rename(columns = {'drug_loading': 'Drug-lipid / %'})
+backend_df_reduced = backend_df_reduced.rename(columns={
+    'zeta_potential': 'Zeta potential / mV',
+    'Z_average_nm': 'Particle size / nm',
+    'media_pH': 'Media pH',
+    'media_temp_oC': 'Media temp / °C',
+    'media_volume_mL': 'Media volume / mL',
+    'drug_loading': 'Drug-lipid / %'
+})
 
 #check for missing values in the dataframe
 
@@ -36,8 +38,13 @@ missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
 
 missing_data.to_csv('data/processed/missing_data.csv', index=True)
 
+
 # Generate the missing value matrix
-msno.matrix(backend_df_reduced, fontsize=16, figsize=(16, 12), color=(0.2, 0.4, 0.6))
+msno.matrix(backend_df_reduced, 
+            fontsize=16, 
+            figsize=(16, 12), 
+            color=(0.2, 0.4, 0.6), 
+            sparkline = False)
 plt.ylabel('IVR ID', fontsize=16)
 
 plt.savefig('figures/missing_matrix.png', dpi=600, bbox_inches='tight')

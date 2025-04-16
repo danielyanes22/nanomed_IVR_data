@@ -44,12 +44,13 @@ plot_APIs <- ggplot(APIs, aes(x = API, y = Percent, fill = API)) +
   theme_minimal() +
   theme(
     legend.position = "none",
-    axis.text.x = element_text(angle = 60, hjust = 1, vjust = 0.9, face = "bold"),  
-    axis.text.y = element_text(face = "bold"),  
-    axis.title.x = element_text(face = "bold"),  
+    axis.text.x = element_text(angle = 60, hjust = 1, vjust = 0.9, face = "bold"),
+    axis.text.y = element_text(face = "bold"),
+    axis.title.x = element_text(face = "bold"),
     axis.title.y = element_text(face = "bold", size = 14),
+    axis.ticks.y = element_line(),               # Show y-axis ticks # Left axis line
     panel.grid = element_blank()
-  ) + 
+  ) +
   ggtitle("a")
 
 
@@ -91,6 +92,7 @@ plot_methods <- ggplot(release_methods, aes(x = release_method, y = Percent, fil
     axis.text.x = element_text(angle = 60, hjust = 1, vjust = 0.9, face = "bold"),  
     axis.text.y = element_text(face = "bold"),  
     axis.title.x = element_text(face = "bold"),
+    axis.ticks.y = element_line(),
     panel.grid = element_blank()
   ) + 
   ggtitle("b")

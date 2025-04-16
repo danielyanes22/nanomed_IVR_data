@@ -25,37 +25,45 @@ plot_quality_bar <- function(data_col, title, fill_color) {
     theme_minimal() +
     theme(
       legend.position = "none",
-      axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"),
-      axis.text.y = element_text(face = "bold"),
-      axis.title.y = element_text(face = "bold"),
-      plot.title = element_text(face = "bold")
+      axis.text.x = element_text(angle = 45, hjust = 1, face = "bold", size = 12),
+      axis.text.y = element_text(face = "bold", size = 12),
+      axis.title.y = element_text(face = "bold", size = 14),
+      plot.title = element_text(face = "bold"),
+      axis.ticks.y = element_line()
     )
 }
 
 # Generate individual barplots using column names or positions
-# Update column names as needed below if different
-# Individual plots with custom x-axis labels and formatting
 p1 <- plot_quality_bar(quality_reporting[[4]], "Reporting Quality", pastel_palette[1]) +
   labs(x = "Plot resolution") +
-  theme(panel.grid = element_blank())
-
-p2 <- plot_quality_bar(quality_reporting[[5]], "Performance Bias", pastel_palette[2]) +
-  labs(x = "Are the measurement timepoint number sufficient? >5") +
   theme(
     panel.grid = element_blank(),
-    axis.title.y = element_blank()
+    axis.title.x = element_text(face = "bold", size = 14)
+  )
+
+p2 <- plot_quality_bar(quality_reporting[[5]], "Performance Bias", pastel_palette[2]) +
+  labs(x = "Are the measurement timepoint number sufficient? > 5") +
+  theme(
+    panel.grid = element_blank(),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(face = "bold", size = 14)
   )
 
 p3 <- plot_quality_bar(quality_reporting[[6]], "Performance Bias", pastel_palette[3]) +
   labs(x = "Does the shape resemble a profile?") +
-  theme(panel.grid = element_blank())
+  theme(
+    panel.grid = element_blank(),
+    axis.title.x = element_text(face = "bold", size = 14)
+  )
 
 p4 <- plot_quality_bar(quality_reporting[[7]], "Detection Bias", pastel_palette[4]) +
   labs(x = "Are sufficient numbers of repeats used and average presented?") +
   theme(
     panel.grid = element_blank(),
-    axis.title.y = element_blank()
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(face = "bold", size = 13)
   )
+
 
 # Combine in 2x2 layout with subplot tags
 quality <- (p1 | p2) / (p3 | p4) +
