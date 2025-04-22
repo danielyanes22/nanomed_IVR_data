@@ -69,7 +69,7 @@ print('Prepared API dataframe!')
 
 # Define IVR features to be included in the dataframe
 features_IVR_all = f"""IVR.ID, release_method, media_pH, media_temp_oC, media_volume_mL""" #input as string
-features_CQAs_all = ['drug_loading','structure_type', 'Z_average_nm', 'PDI', 'zeta_potential'] #input as list 
+features_CQAs_all = ['drug_loading','structure_type', 'particle_size_nm', 'PDI', 'zeta_potential'] #input as list 
 
 df_all = create_combined_df(features_IVR_all, features_CQAs_all, conn).rename(columns = {'ID': 'IVR_ID'})
 
