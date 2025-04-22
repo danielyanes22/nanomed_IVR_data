@@ -1,3 +1,9 @@
+"""
+This script contains the template for generating the db schema template for the liposome IVR database. 
+The template can be adapated to other nanomedicine dosage forms, by replacing the CPP and CQA-related fields with system-specific columns.
+ 
+"""
+
 from config import conn, cur
 
 cur.execute("PRAGMA foreign_keys = ON;")
