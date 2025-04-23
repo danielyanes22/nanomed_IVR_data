@@ -1,0 +1,564 @@
+IVR_ID,component_name
+1,RPMI 1640
+1,FCS
+2,RPMI 1640
+2,FCS
+3,PBS
+3,NaCl
+4,PBS
+4,NaCl
+4,Human serum
+5,Ammonium sulfate
+5,NaCl
+5,Histidine
+6,Ammonium sulfate
+6,NaCl
+6,Histidine
+7,Ammonium sulfate
+7,NaCl
+7,Histidine
+8,NaCl
+8,Histidine
+9,Ammonium sulfate
+9,NaCl
+9,Histidine
+10,NaCl
+10,Histidine
+11,Ammonium sulfate
+11,NaCl
+11,Histidine
+12,NaCl
+12,Histidine
+13,Ammonium sulfate
+13,NaCl
+13,Histidine
+14,Ammonium sulfate
+14,NaCl
+14,Histidine
+15,Ammonium sulfate
+15,NaCl
+15,Histidine
+16,Ammonium chloride
+16,NaCl
+16,Histidine
+17,Ammonium acetate
+17,NaCl
+17,Histidine
+18,Ammonium sulfate
+18,NaCl
+18,Histidine
+19,Ammonium sulfate
+19,NaCl
+19,Histidine
+20,Ammonium sulfate
+20,NaCl
+20,Histidine
+21,HEPES
+22,HEPES
+23,HEPES
+24,HEPES
+25,FCS
+26,FCS
+27,FCS
+28,FCS
+29,HEPES
+30,HEPES
+31,HEPES
+32,HEPES
+33,FCS
+34,FCS
+35,FCS
+36,FCS
+37,HEPES
+38,HEPES
+39,HEPES
+40,HEPES
+41,FCS
+42,FCS
+43,FCS
+44,FCS
+45,PBS
+46,PBS
+47,PBS
+48,PBS
+48,BSA
+49,PBS
+49,BSA
+50,PBS
+50,BSA
+51,PBS
+51,BSA
+52,PBS
+52,BSA
+53,PBS
+53,BSA
+54,RPMI 1640
+54,FCS
+55,dextrose
+55,FBS
+56,PBS
+57,PBS
+58,HP-CD
+58,Ammonium bicarbonate
+58,MES
+58,NaN3
+58,sucrose
+59,HP-CD
+59,Ammonium bicarbonate
+59,MES
+59,NaN3
+59,sucrose
+60,HP-CD
+60,Ammonium bicarbonate
+60,MES
+60,NaN3
+60,sucrose
+61,HP-CD
+61,Ammonium bicarbonate
+61,MES
+61,NaN3
+61,sucrose
+62,y-CD
+62,Ammonium bicarbonate
+62,MES
+62,NaN3
+62,sucrose
+68,HP-CD
+68,Ammonium bicarbonate
+68,MES
+68,NaN3
+68,sucrose
+69,HP-CD
+69,Ammonium bicarbonate
+69,MES
+69,NaN3
+69,sucrose
+70,HP-CD
+70,Ammonium bicarbonate
+70,MES
+70,NaN3
+70,sucrose
+71,HP-CD
+71,Ammonium bicarbonate
+71,MES
+71,NaN3
+71,sucrose
+72,HP-CD
+72,Ammonium bicarbonate
+72,MES
+72,NaN3
+72,sucrose
+73,HP-CD
+73,Ammonium bicarbonate
+73,MES
+73,NaN3
+73,sucrose
+74,HP-CD
+74,Ammonium bicarbonate
+74,MES
+74,NaN3
+74,sucrose
+75,HP-CD
+75,Ammonium bicarbonate
+75,MES
+75,NaN3
+75,sucrose
+76,HP-CD
+76,Ammonium bicarbonate
+76,MES
+76,NaN3
+76,sucrose
+77,HP-CD
+77,Ammonium bicarbonate
+77,MES
+77,NaN3
+77,sucrose
+78,HP-CD
+78,Ammonium bicarbonate
+78,MES
+78,NaN3
+78,sucrose
+79,HP-CD
+79,Ammonium bicarbonate
+79,MES
+79,NaN3
+79,sucrose
+80,HP-CD
+80,Ammonium bicarbonate
+80,MES
+80,NaN3
+80,sucrose
+81,HP-CD
+81,Ammonium bicarbonate
+81,MES
+81,NaN3
+81,sucrose
+82,HP-CD
+82,Ammonium bicarbonate
+82,MES
+82,NaN3
+82,sucrose
+86,HP-CD
+86,Ammonium bicarbonate
+86,MES
+86,NaN3
+86,sucrose
+87,HP-CD
+87,Ammonium bicarbonate
+87,MES
+87,NaN3
+87,sucrose
+88,HP-CD
+88,Ammonium bicarbonate
+88,MES
+88,NaN3
+88,sucrose
+83,Ammonium sulfate
+84,Ammonium sulfate
+85,Ammonium sulfate
+89,Ammonium sulfate
+90,Ammonium sulfate
+91,Ammonium sulfate
+92,Ammonium sulfate
+98,Ammonium sulfate
+99,Ammonium sulfate
+100,Ammonium sulfate
+93,PBS
+94,PBS
+95,PBS
+96,PBS
+96,Human serum
+97,PBS
+97,Human serum
+101,HEPES
+101,sucrose
+101,NaN3
+101,y-CD
+102,HEPES
+102,sucrose
+102,NaN3
+102,y-CD
+103,HEPES
+103,sucrose
+103,NaN3
+103,y-CD
+104,HEPES
+104,sucrose
+104,NaN3
+104,y-CD
+105,HEPES
+105,sucrose
+105,NaN3
+105,y-CD
+106,sucrose
+106,HEPES
+106,NaN3
+106,y-CD
+107,sucrose
+107,HEPES
+107,NaN3
+107,y-CD
+108,sucrose
+108,HEPES
+108,NaN3
+108,y-CD
+109,sucrose
+109,HEPES
+109,NaN3
+109,y-CD
+110,sucrose
+110,HEPES
+110,NaN3
+110,y-CD
+111,sucrose
+111,HEPES
+111,NaN3
+111,y-CD
+112,sucrose
+112,HEPES
+112,NaN3
+112,y-CD
+113,sucrose
+113,HEPES
+113,NaN3
+113,y-CD
+114,sucrose
+114,HEPES
+114,NaN3
+114,y-CD
+115,sucrose
+115,HEPES
+115,NaN3
+115,y-CD
+116,sucrose
+116,HEPES
+116,NaN3
+116,y-CD
+117,sucrose
+117,HEPES
+117,NaN3
+117,y-CD
+118,sucrose
+118,HEPES
+118,NaN3
+118,y-CD
+119,sucrose
+119,HEPES
+119,NaN3
+119,y-CD
+120,sucrose
+120,HEPES
+120,NaN3
+120,y-CD
+121,sucrose
+121,HEPES
+121,NaN3
+121,y-CD
+122,sucrose
+122,HEPES
+122,NaN3
+122,y-CD
+123,sucrose
+123,HEPES
+123,NaN3
+123,y-CD
+124,sucrose
+124,HEPES
+124,NaN3
+124,y-CD
+125,sucrose
+125,HEPES
+125,NaN3
+125,y-CD
+126,HEPES
+126,sucrose
+126,y-CD
+127,KRB
+127,PL
+131,KRB
+131,PL
+131,BSA
+132,KRB
+132,PL
+133,KRB
+133,PL
+133,BSA
+134,PBS
+134,PL
+134,BSA
+135,PBS
+135,PL
+136,KRB
+136,PL
+136,BSA
+137,KRB
+137,PL
+138,PBS
+138,PL
+138,BSA
+139,PBS
+139,PL
+140,KRB
+140,PL
+140,BSA
+141,KRB
+141,PL
+173,PBS
+174,PBS
+175,FCS
+176,FCS
+177,FCS
+178,FCS
+179,FCS
+180,HEPES
+181,HEPES
+182,HEPES
+183,HEPES
+184,HEPES
+185,HEPES
+186,FCS
+187,FCS
+188,FCS
+189,FCS
+190,FCS
+191,FCS
+192,FCS
+193,FCS
+194,FCS
+195,FCS
+196,FCS
+197,FCS
+198,FCS
+199,FCS
+200,FCS
+201,PBS
+202,PBS
+203,PBS
+204,PBS
+205,PBS
+206,PBS
+207,PBS
+208,PBS
+209,PBS
+210,PBS
+211,PBS
+212,PBS
+213,PBS
+214,PBS
+215,PBS
+216,PBS
+217,PBS
+218,PBS
+219,PBS
+220,PBS
+221,HEPES
+221,HP-CD
+222,HEPES
+222,HP-CD
+223,HEPES
+223,HP-CD
+224,HEPES
+224,HP-CD
+225,HEPES
+225,HP-CD
+226,PBS
+227,PBS
+228,PBS
+229,PBS
+230,PBS
+231,PBS
+231,HSA
+232,PBS
+232,HSA
+233,PBS
+233,HSA
+234,PBS
+235,PBS
+236,PBS
+237,PBS
+238,PBS
+239,PBS
+240,PBS
+241,PBS
+242,CP buffer
+243,PBS
+244,PBS
+245,CB buffer
+127,BS
+131,BS
+136,BS
+137,BS
+140,BS
+134,BS
+135,BS
+138,BS
+180,NaCl
+181,NaCl
+182,NaCl
+183,NaCl
+184,NaCl
+185,NaCl
+21,NaCl
+22,NaCl
+23,NaCl
+24,NaCl
+29,NaCl
+30,NaCl
+31,NaCl
+32,NaCl
+37,NaCl
+38,NaCl
+39,NaCl
+40,NaCl
+139,BS
+132,BS
+133,BS
+141,BS
+250,PBS
+251,PBS
+252,PBS
+253,PBS
+254,PBS
+255,PBS
+256,PBS
+257,PBS
+258,PBS
+259,PBS
+260,PBS
+261,PBS
+262,PBS
+263,PBS
+264,PBS
+265,PBS
+267,Saline
+268,Saline
+269,Saline
+269,Human serum
+270,Saline
+270,Human serum
+271,PBS
+272,PBS
+273,PBS
+274,PBS
+275,PBS
+276,PBS
+277,PBS
+277,BSA
+278,PBS
+278,Human serum
+279,PBS
+279,Tumour tissue
+280,PBS
+280,Tween 80
+281,PBS
+281,Tween 80
+282,PBS
+282,Tween 80
+283,PBS
+284,serum
+285,serum
+286,PBS
+287,PBS
+288,PBS
+289,PBS
+290,HCL solution
+291,PBS
+292,double distilled water
+293,PBS
+294,PBS
+294,Me-b-CD
+294,FBS
+295,PBS
+296,PBS
+297,PBS
+298,PBS
+299,PBS
+300,PBS
+301,PBS
+302,Saline
+303,Saline
+304,Saline
+305,Saline
+306,PBS
+308,PBS
+309,PBS
+310,PBS
+311,PBS
+312,PBS
+313,PBS
+314,PBS
+314,Ammonium chloride
+314,histidine
+314,glucose
+315,PBS
+315,Ammonium chloride
+315,histidine
+315,glucose
+316,PBS
+316,Ammonium chloride
+316,histidine
+316,glucose
+317,PBS
+317,Ammonium chloride
+317,histidine
+317,glucose
