@@ -52,17 +52,22 @@ This following folder structure gives an overview of the repository:
 
 <pre>
 ├── data/
-│   ├── processed/  # datasets for visualisation in R
-│   ├── unprocessed/ # backend and media components datasets
-│   ├── liposome_IVR.db #store db file from 
-├── data_viz/ # scripts for generating figures
+│   ├──drug_release/ #file names of each digitised drug release profile based on IVR_ID     
+│   ├── processed/  #datasets for visualisation in R
+│   ├── unprocessed/ #backend and media components datasets
+│   ├── liposome_IVR.db #store db file here  
+├── data_viz/ #scripts for generating figures
 ├── figures/ 
-├── main.py # database connection and SQL queries for generating datasets for analysis and plotting
-├── src/ # helper functions connecting to the db and generating db schema
+├── main.py #database connection and SQL queries for generating datasets for analysis and plotting
+├── src/ #helper functions connecting to the db and generating db schema
 </pre>
 
 <h2 id="content">Connecting to the database, querying database to generate backend dataset and subsequent figures</h2> 
 Run `main.py` to generate the datasets for plotting followed by appropriate Python / R scripts in 'data_viz/'. Ensure files are structured as downloaded from the Nottingham Research Data Management Repository, specifically place the 'liposome_IVR.db' file in the 'data/' folder. 
+
+
+<h2 id="content">Generating database schema for storing IVR and formulation data on different nanomedicine dosage forms</h2> 
+In 'src/db_create.py' is the code used to generate the database structure used for storing information on liposome formulations and their drug release profiles. This template can be used for storing similar data on other nanomedicine dosage forms in a standardised format. 
 
 <!-- How to cite-->
 <h2 id="How-to-cite">How to cite</h2>
