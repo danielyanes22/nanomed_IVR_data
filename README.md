@@ -18,7 +18,7 @@
 <sup>\*</sup>Corresponding authors: mischa.zelzer@nottingham.ac.uk; jamie.twycross@nottingham.ac.uk; maryam.parizkar@ucl.ac.uk
 
 **Abstract**\
-Machine learning and artificial intelligence (AI) is transforming the way pharmaceutical products are developed across drug discovery, process engineering, and pharmaceutics functions. AI for nanomedicine development is enabling faster and more accurate prediction of critical quality attributes (CQAs). However, the full potential of AI is limited by the quality and accessibility of data. Unlike adjacent fields such as the chemical sciences, the pharmaceutics domain lacks curated, open-source databases, particularly for nanomedicines. To address this, here we curate an open-access database focused on liposomal formulations. The database includes formulation parameters, in vitro release (IVR) testing conditions, and digitised drug release data. By evaluating the entries in the database qualitatively and quantitatively, we identified current challenges in current data reporting practices. This includes incomplete reporting of formulation and IVR testing conditions, as well as inconsistent quality of drug release plots and their data format. Based on our analysis, we propose a set of data standards and a database structure to support standardisation efforts for nanomedicine formulation and IVR data. By making the curated database open-source, we aim to improve data transparency and accessibility in the field. This will ultimately facilitate the development of robust AI models for IVR and CQA prediction, streamlining nanomedicine development. 
+Machine learning and artificial intelligence (AI) is transforming the way pharmaceutical products are developed across drug discovery, process engineering, and pharmaceutics functions. AI for nanomedicine development is enabling faster and more accurate prediction of critical quality attributes (CQAs). However, the full potential of AI is limited by the quality and accessibility of data. Unlike adjacent fields such as the chemical sciences, the pharmaceutics domain lacks curated, open-access databases, particularly for nanomedicines. To address this, here we curate an open-access database focused on liposomal formulations. The database includes formulation parameters, in vitro release (IVR) testing conditions, and digitised drug release data. By evaluating the entries in the database qualitatively and quantitatively, we identified current challenges in current data reporting practices. This includes incomplete reporting of formulation and IVR testing conditions, as well as inconsistent quality of drug release plots and their data format. Based on our analysis, we propose a set of data standards and a database structure to support standardisation efforts for nanomedicine formulation and IVR data. By making the curated database open-access, we aim to improve data transparency and accessibility in the field. This will ultimately facilitate the development of robust AI models for IVR and CQA prediction, streamlining nanomedicine development. 
 
 **Graphical Abstract**\
 ![Figure 1](figures/graphical_abstract.png?raw=true "Graphical Abstract")
@@ -52,16 +52,17 @@ This following folder structure gives an overview of the repository:
 
 <pre>
 ├── data/
-│   ├── clean/  # datasets for ML classifier screening on 7 and 9 features
-│   ├── unprocessed/ # fitted weibull params with f2 scores > 50 & backend datasets 
-├── experiments/ # Run the scripts in this order specified in __init__.py file to reproduce the analysis
-├── models # .pkl file of each ML models trained on 7 features using stratified 5-fold cross validation
-├── results # clustering, kinetic model fitting and ML_classifier evaluation files 
-├── src # helper functions for running batch parameter estimation and data preprocessing 
+│   ├── processed/  # datasets for visualisation in R
+│   ├── unprocessed/ # backend and media components datasets
+│   ├── liposome_IVR.db #store db file from 
+├── data_viz/ # scripts for generating figures
+├── figures/ 
+├── main.py # database connection and SQL queries for generating datasets for analysis and plotting
+├── src/ # helper functions connecting to the db and generating db schema
 </pre>
 
 <h2 id="content">Connecting to the database, querying database to generate backend dataset and subsequent figures</h2> 
-Run the scripts in the order specified in 'experiments/__init__.py'.
+Run `main.py` to generate the datasets for plotting followed by appropriate Python / R scripts in 'data_viz/'. Ensure files are structured as downloaded from the Nottingham Research Data Management Repository, specifically place the 'liposome_IVR.db' file in the 'data/' folder. 
 
 <!-- How to cite-->
 <h2 id="How-to-cite">How to cite</h2>
