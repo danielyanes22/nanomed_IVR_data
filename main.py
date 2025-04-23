@@ -2,7 +2,6 @@ import pandas as pd
 from src import (conn, create_combined_df, calc_value_distribution, getMolDescriptors)
 from rdkit import Chem
 
-### Run from root directory: 'py -m experiments.generate_backend_df' ###
 
 # ---- Step 1: Retrieve API information and Join with IVR Table ----
 api_query = f"""SELECT 
