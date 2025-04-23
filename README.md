@@ -69,7 +69,7 @@ Run `main.py` to generate the datasets for plotting followed by appropriate Pyth
 <h2 id="content">Generating database schema for storing IVR and formulation data on different nanomedicine dosage forms</h2> 
 In 'src/db_create.py' is the code used to generate the database structure used for storing information on liposome formulations and their drug release profiles. This template can be used for storing similar data on other nanomedicine dosage forms in a standardised format. 
 
-![Figure 2](figures/figure_2.PNG?raw=true "Liposome IVR db schema")
+![Figure 2](figures/figure_2.PNG?raw=true "Liposome IVR database structure")
 
 <!-- How to cite-->
 <h2 id="How-to-cite">How to cite</h2>
