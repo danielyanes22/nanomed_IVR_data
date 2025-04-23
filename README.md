@@ -52,7 +52,7 @@ This following folder structure gives an overview of the repository:
 
 <pre>
 ├── data/
-│   ├──drug_release/ #file names of each digitised drug release profile based on IVR_ID     
+│   ├── drug_release/ #file names of each digitised drug release profile based on IVR_ID     
 │   ├── processed/  #datasets for visualisation in R
 │   ├── unprocessed/ #backend and media components datasets
 │   ├── liposome_IVR.db #store db file here  
