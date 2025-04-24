@@ -24,3 +24,6 @@ formulation_IDs = pd.read_sql("""SELECT
                         """, conn)
 
 formulation_ID_list = formulation_IDs['ID'].tolist()
+
+folder_path = 'data/drug_release'
+file_names = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f)) and f.endswith('..csv')]
