@@ -7,61 +7,51 @@ library(rlang)
 backend_data <- read_csv("data/unprocessed/backend_data.csv")
 
 mol_desc_df <- backend_data[, c("MolWt", "TPSA", "MolLogP")]
-formulation_df <- backend_data[, c("Z_average_nm", "zeta_potential", "PDI")]
+formulation_df <- backend_data[, c("particle_size_nm", "zeta_potential", "PDI")]
 
-# Function to create separate boxplot and histogram with % y-axis
+
 # Define the theme for labels
 thm <- theme(plot.tag = element_text(face = "bold", size = 14))
 
-# Updated function to accept color
-plot_box_hist_percent <- function(data, var, label, color, show_y = TRUE, log_x = FALSE) {
+# Function to make a violin plot with overlaid points
+plot_violin_points <- function(data, var, label, fill_color, point_color, log_x = FALSE) {
   var_sym <- rlang::sym(var)
   
-  base_scale <- if (log_x) scale_x_log10() else scale_x_continuous()
+  base_scale <- if (log_x) scale_y_log10() else scale_y_continuous()
   
-  p_box <- ggplot(data, aes(x = !!var_sym)) +
-    geom_boxplot(fill = color, color = "black", width = 0.4) +
+  ggplot(data, aes(x = "", y = !!var_sym)) +
+    geom_violin(fill = fill_color, color = "black", width = 0.8, alpha = 0.7) +
+    geom_jitter(color = point_color, width = 0.1, size = 2, alpha = 0.6) +
+    labs(x = NULL, y = label) +
     base_scale +
     theme_minimal() +
     theme(
-      axis.title.x = element_blank(),
       axis.text.x = element_blank(),
-      axis.text.y = element_blank(),
-      axis.ticks = element_blank(),
-      panel.grid = element_blank(),
-      plot.margin = margin(2, 5, 2, 5)
-    )
-  
-  p_hist <- ggplot(data, aes(x = !!var_sym)) +
-    geom_histogram(aes(y = after_stat(count / sum(count) * 100)),
-                   bins = 20, fill = color, color = "black") +
-    base_scale +
-    labs(x = label, y = if (show_y) "% of database" else NULL) +
-    theme_minimal() +
-    theme(
-      axis.title.x = element_text(face = "bold", size = 14),
-      axis.title.y = if (show_y) element_text(face = "bold", size = 14) else element_blank(),
-      axis.text.x = element_text(face = "bold", size = 12),
+      axis.ticks.x = element_blank(),
+      axis.title.y = element_text(face = "bold", size = 14),
       axis.text.y = element_text(face = "bold", size = 12),
-      panel.grid = element_blank(),
-      axis.ticks.y = element_line(),
-      axis.ticks.x = element_line(),
-      plot.margin = margin(0, 5, 5, 5)
+      panel.grid = element_blank()
     )
-  
-  p_box / p_hist + plot_layout(heights = c(0.2, 0.8))
 }
 
+# generate plots for molwt, logp, and tpsa
+plot_molwt <- plot_violin_points(mol_desc_df, 
+                                 "MolWt", "Molecular weight (g/mol)", 
+                                 fill_color = "#FDBAB3", 
+                                 point_color = "#E6550D")
+plot_logp  <- plot_violin_points(mol_desc_df, 
+                                 "MolLogP", 
+                                 "Calculated logP", 
+                                 fill_color = "#B5E7B0", 
+                                 point_color = "#31A354")
 
-# Placeholder colors (top 3 API bar colors)
-colors <- c("#FDBAB3", "#B5E7B0", "#B3C7F9")
+plot_tpsa  <- plot_violin_points(mol_desc_df, 
+                                 "TPSA", 
+                                 "TPSA (Å²)", 
+                                 fill_color = "#B3C7F9", 
+                                 point_color = "#3182BD")
 
-# Create individual plots with distinct colors
-plot_molwt <- plot_box_hist_percent(mol_desc_df, "MolWt", "Molecular weight (g/mol)", color = colors[1], show_y = TRUE)
-plot_logp <- plot_box_hist_percent(mol_desc_df, "MolLogP", "Calculated logP", color = colors[2], show_y = FALSE)
-plot_tpsa <- plot_box_hist_percent(mol_desc_df, "TPSA", "TPSA (Å²)", color = colors[3], show_y = FALSE)
-
-# Combine and annotate
+# Combine and annotate and save
 final_plot <- (plot_molwt | plot_logp | plot_tpsa) +
   plot_annotation(
     tag_levels = "a",
@@ -70,7 +60,7 @@ final_plot <- (plot_molwt | plot_logp | plot_tpsa) +
 
 final_plot
 
-# Save the combined plot as a high-resolution PNG
+
 ggsave(
   "figures/mol_descriptors.png",  # Filename
   plot = final_plot,  # Plot to save
@@ -82,19 +72,34 @@ ggsave(
 )
 
 
-#plot distribution 
+#plot ps, zp, and pdi
 
-# Create individual plots with distinct colors
-plot_ps <- plot_box_hist_percent(formulation_df, "Z_average_nm", "Particle size (nm)",
-                                 color = colors[1], show_y = TRUE, log_x = TRUE)
+plot_ps <- plot_violin_points(
+  formulation_df, 
+  "particle_size_nm", 
+  "Particle size (nm)", 
+  fill_color = colors[1], 
+  point_color = "#E6550D",  # choose any contrasting point color
+  log_x = TRUE
+)
 
-plot_zp <- plot_box_hist_percent(formulation_df, "zeta_potential", "Zeta potential (mV)",
-                                 color = colors[2], show_y = FALSE)
+plot_zp <- plot_violin_points(
+  formulation_df, 
+  "zeta_potential", 
+  "Zeta potential (mV)", 
+  fill_color = colors[2], 
+  point_color = "#31A354"
+)
 
-plot_PDI <- plot_box_hist_percent(formulation_df, "PDI", "PDI",
-                                  color = colors[3], show_y = FALSE)
+plot_PDI <- plot_violin_points(
+  formulation_df, 
+  "PDI", 
+  "PDI", 
+  fill_color = colors[3], 
+  point_color = "#3182BD"
+)
 
-# Combine and annotate
+# Combine, annotate and save 
 formulation_properties <- (plot_ps | plot_zp | plot_PDI) +
   plot_annotation(
     tag_levels = "a",
@@ -102,6 +107,7 @@ formulation_properties <- (plot_ps | plot_zp | plot_PDI) +
   )
 
 formulation_properties
+
 
 # Save the combined plot as a high-resolution PNG
 ggsave(
@@ -116,7 +122,7 @@ ggsave(
 
 #get summary stats for word document 
 summary_stats <- formulation_df |>
-  dplyr::select(Z_average_nm, zeta_potential, PDI) |>
+  dplyr::select(particle_size_nm, zeta_potential, PDI) |>
   purrr::map_df(~ tibble(
     min = min(.x, na.rm = TRUE),
     median = median(.x, na.rm = TRUE),
