@@ -7,7 +7,7 @@
 <h2 id="Title">Making <em>in vitro</em> release and formulation data AI-ready: A foundation for streamlined nanomedicine development</h2>
 
 
-**Daniel Yanes**<sup>1</sup>,**Heather Mead**<sup>2</sup>, **James Mann**<sup>2</sup>, **Magnus Röding**<sup>3,4</sup>, **Vasiliki Paraskevopoulou**<sup>2</sup>, **Cameron Alexander**<sup>1</sup>, **Maryam Parhizkar**<sup>5*</sup>, **Jamie Twycross**<sup>6*</sup>, **Mischa Zelzer**<sup>1*</sup>
+**Daniel Yanes**<sup>1</sup>, **Heather Mead**<sup>2</sup>, **James Mann**<sup>2</sup>, **Magnus Röding**<sup>3,4</sup>, **Vasiliki Paraskevopoulou**<sup>2</sup>, **Cameron Alexander**<sup>1</sup>, **Maryam Parhizkar**<sup>5*</sup>, **Jamie Twycross**<sup>6*</sup>, **Mischa Zelzer**<sup>1*</sup>
 
 <sup>1</sup>School of Pharmacy, University of Nottingham, University Park Campus, Nottingham, NG7 2RD, UK\
 <sup>2</sup>Global Product Development, Pharmaceutical Technology & Development, Operations, AstraZeneca, Macclesfield, SK10 2NA, UK\
