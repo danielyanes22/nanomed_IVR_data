@@ -28,11 +28,13 @@ plot_violin_points <- function(data, var, label, fill_color, point_color, log_x 
     theme(
       axis.text.x = element_blank(),
       axis.ticks.x = element_blank(),
+      axis.ticks.y = element_line(color = "black"),   # y-axis tick marks
+      axis.text.y = element_text(face = "bold", size = 12, color = "black"), # y-axis tick labels
       axis.title.y = element_text(face = "bold", size = 14),
-      axis.text.y = element_text(face = "bold", size = 12),
-      panel.grid = element_blank()
+      panel.grid = element_blank() # border around plot
     )
 }
+
 
 # generate plots for molwt, logp, and tpsa
 plot_molwt <- plot_violin_points(mol_desc_df, 
@@ -78,7 +80,7 @@ plot_ps <- plot_violin_points(
   formulation_df, 
   "particle_size_nm", 
   "Particle size (nm)", 
-  fill_color = colors[1], 
+  fill_color = "#FDBAB3", 
   point_color = "#E6550D",  # choose any contrasting point color
   log_x = TRUE
 )
@@ -87,7 +89,7 @@ plot_zp <- plot_violin_points(
   formulation_df, 
   "zeta_potential", 
   "Zeta potential (mV)", 
-  fill_color = colors[2], 
+  fill_color = "#B5E7B0", 
   point_color = "#31A354"
 )
 
@@ -95,7 +97,7 @@ plot_PDI <- plot_violin_points(
   formulation_df, 
   "PDI", 
   "PDI", 
-  fill_color = colors[3], 
+  fill_color = "#B3C7F9", 
   point_color = "#3182BD"
 )
 
