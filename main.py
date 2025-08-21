@@ -81,7 +81,8 @@ df_all_combined = pd.merge(df_all, API_df_name, on = 'IVR_ID')
 #Export the time units of each IVR profile (IVR_ID) to a csv file 
 time_query = """
             SELECT 
-                ID, Time_units
+                ID, 
+                Time_units
             FROM 
                 IVR
      """
@@ -93,24 +94,32 @@ API_percent = calc_value_distribution('API_name', df_all_combined)
 method_percent = calc_value_distribution('release_method', df_all_combined)
 
 
-# ---- Test function ---- # 
+# ---- Step 5: Prepare heatmap dataframe ---- # 
 test_df = prepare_heatmap_counts(df_all_combined, 'API_name', 'release_method', pivot=True, add_totals=True)
 
 test_df.to_csv('data/processed/test_heatmap_counts.csv', index=True)
 
 
-# ---- Step 5: generate dataframe of media components used in each IVR test ----
+# ---- Step 6: generate dataframe of media components used in each IVR test ----
 media_query = f"""
-            SELECT
-                IVR_ID,
-                component_name
-            FROM
-                media_components;""" 
+SELECT 
+    mc.IVR_ID,
+    mc.component_name,
+    i.formulation_ID,
+    f.API_ID,
+    a.API_name
+FROM media_components AS mc
+INNER JOIN IVR AS i
+    ON mc.IVR_ID = i.ID
+INNER JOIN formulation AS f
+    ON i.formulation_ID = f.ID
+INNER JOIN API_name AS a
+    ON f.API_ID = a.ID;""" 
 
-media_components = pd.read_sql(media_query, conn) 
+media_components_API = pd.read_sql(media_query, conn) 
+media_components_API.to_csv('data/unprocessed/media_components_API.csv', index=False)
 
-
-# ---- Step 6: export all dataframes to csv files ----
+# ---- Step 7: export all dataframes to csv files ----
 """
 if __name__ == "__main__":
     mol_desc_df.to_csv('data/processed/mol_descriptors.csv', index=False)
