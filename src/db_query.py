@@ -48,6 +48,63 @@ def create_combined_df(features_IVR: str, features_CQAs: list, conn: sqlite3.Con
         return None
 
 
+
+def prepare_heatmap_counts(df, drug_col, method_col, pivot=False, add_totals=False):
+    """
+    Convert a two-column dataframe (drug_col, method_col)
+    into counts suitable for heatmap plotting.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Input dataframe with at least two columns: [drug_col, method_col].
+    drug_col : str
+        Column name containing drug names.
+    method_col : str
+        Column name containing release method names.
+    pivot : bool, default=False
+        If False, return long-format dataframe [drug_col, method_col, 'count'].
+        If True, return wide matrix with drugs as rows and methods as columns.
+    add_totals : bool, default=False
+        If True (with pivot=True), add row/column totals.
+    
+    Returns
+    -------
+    pd.DataFrame
+        Either long-format or matrix form (with optional totals).
+    """
+    # Count occurrences
+    counts = (
+        df.groupby([drug_col, method_col])
+        .size()
+        .reset_index(name="count")
+    )
+
+    # All possible combinations
+    all_combos = pd.MultiIndex.from_product(
+        [df[drug_col].unique(), df[method_col].unique()],
+        names=[drug_col, method_col]
+    ).to_frame(index=False)
+
+    counts_full = (
+        all_combos
+        .merge(counts, on=[drug_col, method_col], how="left")
+        .fillna({"count": 0})
+    )
+
+    if pivot:
+        matrix = counts_full.pivot(index=drug_col, columns=method_col, values="count").fillna(0)
+        if add_totals:
+            # Add row totals
+            matrix["Total"] = matrix.sum(axis=1)
+            # Add column totals (including row totals)
+            matrix.loc["Total"] = matrix.sum()
+        return matrix
+    else:
+        return counts_full
+
+
+
 def calc_value_distribution(column_name, df):
     count = df[column_name].value_counts()
     percent = round((count / len(df)) * 100, 2)
