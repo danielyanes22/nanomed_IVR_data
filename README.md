@@ -73,16 +73,17 @@ In 'src/db_create.py' is the code used to generate the database structure used f
 ![Figure 2](figures/figure_2.PNG?raw=true "Liposome IVR database structure")
 
 **Open-access database**\
-The liposome IVR database, digitised drug release data and full code base is deposited on the Nottingham Research Data Management Repository, which can be accessed using the link below. 
+The local liposome IVR database, digitised drug release data and full code base is deposited on the Nottingham Research Data Management Repository, which can be accessed using the link below. 
 
 ```
 http://doi.org/10.17639/nott.7542
 ```
 
 <!-- How to cite-->
-<h2 id="How-to-cite">How to cite</h2>
-**Add DOI from Nottingham repo**
-
+<h2 id="How-to-cite">Paper link</h2>
+```
+https://doi.org/10.1016/j.ijpx.2025.100393
+```
 <!-- License-->
 <h2 id="License">License</h2>
 This codebase is under a CC-BY license. 
